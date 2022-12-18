@@ -19,6 +19,13 @@ public class Car {
             cascade = CascadeType.ALL)
     private User user;
 
+    public Car() {}
+
+    public Car(String model, int series) {
+        this.model = model;
+        this.series = series;
+    }
+
     public Long getId() {
         return id;
     }
