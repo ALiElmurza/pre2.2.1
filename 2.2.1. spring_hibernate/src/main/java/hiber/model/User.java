@@ -19,6 +19,19 @@ public class User {
    @Column(name = "email")
    private String email;
 
+   @OneToOne
+   @JoinColumn(name = "car_id")
+   private Car myCar;
+
+   public Car getCar() {
+      return myCar;
+   }
+
+   public void setCar(Car car) {
+      this.myCar = car;
+   }
+
+
    public User() {}
    
    public User(String firstName, String lastName, String email) {
