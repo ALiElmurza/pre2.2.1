@@ -4,7 +4,6 @@ import hiber.config.AppConfig;
 import hiber.model.User;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -32,3 +31,7 @@ public class MainApp {
       context.close();
    }
 }
+
+
+//?verifyServerCertificate=false&useSSL=false&requireSSL=false&useLegacyDatetimeCode=false&amp&serverTimezone=UTC
+//?autoReconnect=true&useSSL=false
