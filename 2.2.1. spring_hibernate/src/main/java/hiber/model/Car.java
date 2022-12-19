@@ -1,5 +1,7 @@
 package hiber.model;
 
+import org.hibernate.engine.internal.Cascade;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,19 +9,21 @@ import javax.persistence.*;
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "model")
     private String model;
-    @Column(name = "model")
+
+    @Column(name = "series")
     private int series;
 
-    @OneToOne(mappedBy = "myCar",
-            cascade = CascadeType.ALL)
+
+    @OneToOne(mappedBy = "myCar", cascade = CascadeType.ALL)
     private User user;
 
     public Car() {}
+
+
 
     public Car(String model, int series) {
         this.model = model;
