@@ -1,5 +1,6 @@
 package hiber.model;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
@@ -23,21 +24,20 @@ public class User {
 
 
 
-   @OneToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "my_car_id")
-   private Car myCar;
+   @OneToOne (mappedBy = "user")//(cascade = CascadeType.ALL)
+   @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+   //@JoinColumn(name = "my_car_id")
+   //@MapsId
+   private Car car;
 
-   public void addAuto(Car car) {
-      car.setUser(this);
-      myCar = car;
-   }
+ //8:40
 
    public Car getCar() {
-      return myCar;
+      return car;
    }
 
    public void setCar(Car car) {
-      this.myCar = car;
+      this.car = car;
    }
 
 
@@ -79,5 +79,16 @@ public class User {
 
    public void setEmail(String email) {
       this.email = email;
+   }
+
+   @Override
+   public String toString() {
+      return "User{" +
+              "id=" + id +
+              ", firstName='" + firstName + '\'' +
+              ", lastName='" + lastName + '\'' +
+              ", email='" + email + '\'' +
+              ", car=" + car +
+              '}';
    }
 }

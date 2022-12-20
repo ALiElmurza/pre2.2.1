@@ -20,20 +20,20 @@ public class MainApp {
       User user3 = new User("User3", "Lastname3", "user3@mail.ru");
       User user4 = new User("User3", "Lastname3", "user3@mail.ru");
 
-      Car car1 = new Car("Ferrari", 1);
-      Car car2 = new Car("Ferrari", 2);
-      Car car3 = new Car("Ferrari", 3);
-      Car car4 = new Car("Ferrari", 4);
+      Car car1 = new Car(user1,"Ferrari", 488);
+      Car car2 = new Car(user2,"Ferrari", 812);
+      Car car3 = new Car(user3,"Ferrari", 360);
+      Car car4 = new Car(user4,"Ferrari", 250);
+
+      user1.setCar(car1);
+      user2.setCar(car2);
+      user3.setCar(car3);
+      user4.setCar(car4);
 
       userService.add(user1);
       userService.add(user2);
       userService.add(user3);
       userService.add(user4);
-
-      userService.add(car1);
-      userService.add(car2);
-      userService.add(car3);
-      userService.add(car4);
 
 
       List<User> users = userService.listUsers();
@@ -44,6 +44,13 @@ public class MainApp {
          System.out.println("Email = "+user.getEmail());
          System.out.println();
       }
+
+
+//        User user = userService.getUserByModel("Ferrari", 1);
+//
+//      System.out.println(user);
+//
+//      System.out.println(user);
 
       context.close();
    }
