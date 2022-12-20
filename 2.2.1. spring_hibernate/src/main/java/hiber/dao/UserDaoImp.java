@@ -36,28 +36,20 @@ public class UserDaoImp implements UserDao {
    @Override
    @SuppressWarnings("unchecked")
    public User getUserByModel(String model, int series) {
-      Query query =  sessionFactory.getCurrentSession().createQuery("FROM Car"); // as c INNER JOIN c.user as us");
-      User user = null;
-      List<Car> cars = query.getResultList();
+      List<Car> cars = listCars();
       for (Car car : cars) {
          if (car.getModel().equals(model) && car.getSeries() == series) {
-            user = car.getUser();
-            System.out.println("OK");
+            return car.getUser();
          }
       }
-      try {
-         return user;
-      } catch (NullPointerException e) {
-         System.out.println("NOT FOUND USER");
-      }
-      return user;
+      return null;
    }
 
-//   @Override
-//   @SuppressWarnings("unchecked")
-//   public List<Car> listCars() {
-//      TypedQuery<Car> query = sessionFactory.getCurrentSession().createQuery("from Car");
-//      return query.getResultList();
-//   }
+   @Override
+   @SuppressWarnings("unchecked")
+   public List<Car> listCars() {
+      TypedQuery<Car> query = sessionFactory.getCurrentSession().createQuery("from Car");
+      return query.getResultList();
+   }
 
 }
