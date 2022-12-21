@@ -13,8 +13,11 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
-   @Autowired
-   private SessionFactory sessionFactory;
+   private final SessionFactory sessionFactory;
+
+   public UserDaoImp(SessionFactory sessionFactory) {
+      this.sessionFactory = sessionFactory;
+   }
 
    @Override
    public void add(User user) {
@@ -36,13 +39,9 @@ public class UserDaoImp implements UserDao {
    @Override
    @SuppressWarnings("unchecked")
    public User getUserByModel(String model, int series) {
-      List<Car> cars = listCars();
-      for (Car car : cars) {
-         if (car.getModel().equals(model) && car.getSeries() == series) {
-            return car.getUser();
-         }
-      }
-      return null;
+      String HQL = "from User as user where user.car.model = '" +  model + "' and user.car.series = '" + series + "'";
+      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(HQL);
+      return query.getSingleResult();
    }
 
    @Override
