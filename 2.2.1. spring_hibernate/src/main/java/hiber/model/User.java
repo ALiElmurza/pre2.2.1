@@ -2,7 +2,7 @@ package hiber.model;
 
 
 import org.hibernate.annotations.Cascade;
-
+import org.hibernate.annotations.CascadeType;
 import javax.persistence.*;
 
 @Entity
@@ -24,13 +24,10 @@ public class User {
 
 
 
-   @OneToOne (mappedBy = "user")//(cascade = CascadeType.ALL)
-   @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-   //@JoinColumn(name = "my_car_id")
-   //@MapsId
+   @OneToOne (mappedBy = "user")
+   @Cascade(CascadeType.SAVE_UPDATE)
    private Car car;
 
- //8:40
 
    public Car getCar() {
       return car;

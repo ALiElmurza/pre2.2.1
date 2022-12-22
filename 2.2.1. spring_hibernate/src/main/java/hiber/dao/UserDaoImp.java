@@ -39,8 +39,10 @@ public class UserDaoImp implements UserDao {
    @Override
    @SuppressWarnings("unchecked")
    public User getUserByModel(String model, int series) {
-      String HQL = "from User as user where user.car.model = '" +  model + "' and user.car.series = '" + series + "'";
+      String HQL = "from User as user where user.car.model = :model and user.car.series = :series";
       TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(HQL);
+      query.setParameter("model", model);
+      query.setParameter("series", series);
       return query.getSingleResult();
    }
 

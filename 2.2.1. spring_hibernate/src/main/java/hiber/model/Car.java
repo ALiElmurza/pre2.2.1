@@ -1,6 +1,5 @@
 package hiber.model;
 
-import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,7 +8,7 @@ import java.io.Serializable;
 @Table(name = "car")
 public class Car implements Serializable {
     @Id
-    @OneToOne (cascade = CascadeType.ALL) //(mappedBy = "myCar", cascade = CascadeType.ALL)
+    @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
     @Column(name = "model")
@@ -29,13 +28,6 @@ public class Car implements Serializable {
         this.series = series;
     }
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     public String getModel() {
         return model;
